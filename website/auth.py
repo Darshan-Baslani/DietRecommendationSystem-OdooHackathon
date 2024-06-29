@@ -67,11 +67,12 @@ def signup():
             db.session.commit()
             login_user(new_user, remember=True)
             # flash('Account Created!', category='success')
-            return redirect(url_for("auth.info", user=new_user))
-    return render_template("signup.html", user=current_user)
+            #return render_template(url_for("auth.info"), user=new_user)
+            return redirect(url_for('auth.info', user=new_user))
+    return render_template("signup.html", user=None)
 
 
-@auth.route("/info", methods=["GET", "POST"])
+@auth.route("/info.html", methods=["GET", "POST"])
 @login_required
 def info(user=None):
     if request.method == "POST":
@@ -108,7 +109,7 @@ def info(user=None):
             print(str(e))
         login_user(user, remember=True)
         flash("Account Created!", category="success")
-        return render_template("profile.html", user=current_user)
+        return redirect(url_for("auth.profile", user=current_user))
 
     return render_template("info.html")
 
