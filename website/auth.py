@@ -84,13 +84,6 @@ def info(user=None):
         height = request.form.get("height")
         activity_level = request.form.get("activity_level")
 
-        # print(name)
-        # print(age)
-        # print(gender)
-        # print(weight)
-        # print(height)
-        # print(activity_level)
-
         # Ensure "gender" is provided
         if gender is None:
             flash("Please provide your gender", category="error")
